@@ -1,7 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
-import Header from '../components/Header';
+import Header from '../components/Header'
 
 const List = () => {
+    const navigate = useNavigate();
+    const onChangedView = () => {
+        navigate('/view');
+    };
+    
     return (
         <div class="board_wrap">
             <Header></Header>
@@ -17,7 +23,7 @@ const List = () => {
                     <div>
                         <div class="num">5</div>
                         <div class="title">
-                            <a href="view.html">글 제목이 들어갑니다.</a>
+                            <a onClick={onChangedView}>글 제목이 들어갑니다.</a>
                         </div>
                         <div class="writer">닉네임</div>
                         <div class="date">2023.8.5</div>
@@ -26,7 +32,7 @@ const List = () => {
                     <div>
                         <div class="num">4</div>
                         <div class="title">
-                            <a href="view.html">글 제목이 들어갑니다.</a>
+                            <a onClick={onChangedView}>글 제목이 들어갑니다.</a>
                         </div>
                         <div class="writer">닉네임</div>
                         <div class="date">2023.8.5</div>
@@ -35,7 +41,7 @@ const List = () => {
                     <div>
                         <div class="num">3</div>
                         <div class="title">
-                            <a href="view.html">글 제목이 들어갑니다.</a>
+                            <a onClick={onChangedView}>글 제목이 들어갑니다.</a>
                         </div>
                         <div class="writer">닉네임</div>
                         <div class="date">2023.8.5</div>
@@ -44,7 +50,7 @@ const List = () => {
                     <div>
                         <div class="num">2</div>
                         <div class="title">
-                            <a href="view.html">글 제목이 들어갑니다.</a>
+                            <a onClick={onChangedView}>글 제목이 들어갑니다.</a>
                         </div>
                         <div class="writer">닉네임</div>
                         <div class="date">2023.8.5</div>
@@ -53,7 +59,7 @@ const List = () => {
                     <div>
                         <div class="num">1</div>
                         <div class="title">
-                            <a href="view.html">글 제목이 들어갑니다.</a>
+                            <a onClick={onChangedView}>글 제목이 들어갑니다.</a>
                         </div>
                         <div class="writer">닉네임</div>
                         <div class="date">2023.8.5</div>

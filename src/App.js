@@ -1,8 +1,10 @@
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import List from './Pages/List';
+import List from './Pages/list';
 import Write from './Pages/write';
 import Edit from './Pages/Edit';
+import './css/css.css';
+import View from './Pages/view';
 
 // 순서도 정리하기
 
@@ -19,6 +21,10 @@ function App() {
         {
             path: '/Edit',
             element: <Edit />,
+        },
+        {
+            path: '/view',
+            element: <View />,
         },
     ]);
 
