@@ -1,123 +1,26 @@
 import './App.css';
 import { useState } from 'react';
+import Article from './components/Article';
+import Create from './components/Create';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Update from './components/Update';
 
-function Article(props) {
-    return (
-        <article>
-            <h2>{props.title}</h2>
-            {props.body}
-        </article>
-    );
-}
-function Header(props) {
-    return (
-        <header>
-            <h1>
-                <a
-                    href="/"
-                    onClick={(event) => {
-                        event.preventDefault();
-                        props.onChangeMode();
-                    }}
-                >
-                    {props.title}
-                </a>
-            </h1>
-        </header>
-    );
-}
-function Nav(props) {
-    const lis = [];
-    for (let i = 0; i < props.topics.length; i++) {
-        let t = props.topics[i];
-        lis.push(
-            <li key={t.id}>
-                <a
-                    id={t.id}
-                    href={'/read/' + t.id}
-                    onClick={(event) => {
-                        event.preventDefault();
-                        props.onChangeMode(Number(event.target.id));
-                    }}
-                >
-                    {t.title}
-                </a>
-            </li>
-        );
-    }
-    return (
-        <nav>
-            <ol>{lis}</ol>
-        </nav>
-    );
-}
-function Create(props) {
-    return (
-        <article>
-            <h2>Create</h2>
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    const title = event.target.title.value;
-                    const body = event.target.body.value;
-                    props.onCreate(title, body);
-                }}
-            >
-                <p>
-                    <input type="text" name="title" placeholder="title" />
-                </p>
-                <p>
-                    <textarea name="body" placeholder="body"></textarea>
-                </p>
-                <p>
-                    <input type="submit" value="Create"></input>
-                </p>
-            </form>
-        </article>
-    );
-}
-function Update(props) {
-    const [title, setTitle] = useState(props.title);
-    const [body, setBody] = useState(props.body);
-    return (
-        <article>
-            <h2>Update</h2>
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    const title = event.target.title.value;
-                    const body = event.target.body.value;
-                    props.onUpdate(title, body);
-                }}
-            >
-                <p>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="title"
-                        value={title}
-                        onChange={(event) => {
-                            setTitle(event.target.value);
-                        }}
-                    />
-                </p>
-                <p>
-                    <textarea
-                        name="body"
-                        placeholder="body"
-                        value={body}
-                        onChange={(event) => {
-                            setBody(event.target.value);
-                        }}
-                    ></textarea>
-                </p>
-                <p>
-                    <input type="submit" value="Update"></input>
-                </p>
-            </form>
-        </article>
-    );
-}
+<>
+<Article></Article>
+
+<Header></Header>
+
+<Nav></Nav>
+
+<Create></Create>
+
+<Update></Update>
+
+</>
+
+
+
 function App() {
     const [mode, setMode] = useState('WELCOME');
     const [id, setId] = useState(null);
@@ -237,6 +140,7 @@ function App() {
                         href="/create"
                         onClick={(event) => {
                             event.preventDefault();
+                            // url 바뀌지않도록 기본설정
                             setMode('CREATE');
                         }}
                     >
