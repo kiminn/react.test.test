@@ -1,0 +1,32 @@
+.mode {
+    position: absolute;
+    right: 120px;
+    bottom: 100px;
+}
+
+.Nav > ol {
+    font-size: 28px;
+    position: absolute;
+    top: 25%;
+    left: 16%;
+    bottom: 75%;
+}
+
+.welcome {
+    font-size: 30px;
+    position: absolute;
+    top: 45%;
+    left: 17%;
+    bottom: 65%;
+}
+
+.create { 
+    position: absolute;
+    left: 17%;
+    top: 55%;
+    bottom: 45%;
+}
+
+.label {
+    font-size: 18px;
+}
