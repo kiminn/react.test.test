@@ -1,3 +1,7 @@
+* {
+    text-decoration: none;
+}
+
 .mode {
     position: absolute;
     right: 120px;
@@ -40,8 +44,25 @@
 
 .update {
     position: absolute;
-    left: 75%;
+    left: 72%;
     top: 25%;
     bottom: 75%;
 }
 
+.delete {
+    position: absolute;
+    left: 85%;
+    top: 25%;
+    bottom: 75%;
+}
+
+.deleteBtn {
+    padding: 5px 15px;
+    font-size: 24px;
+    border-radius: 6px;
+    background-color: pink;
+}
+
+a {
+    color: rgb(255, 97, 189);
+}

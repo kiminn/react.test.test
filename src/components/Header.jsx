@@ -4,11 +4,11 @@ import { UserContext } from '../context/UserContext';
 
 // {isDark}
 const Header = (props) => {
-    console.log('props:', props.title)
+    console.log('props:', props.title);
     const { isDark } = useContext(ThemeContext);
     const user = useContext(UserContext);
     console.log('isDark :', isDark);
-    console.log(user); 
+    console.log(user);
     return (
         <header
             className="header"
@@ -17,10 +17,19 @@ const Header = (props) => {
                 color: isDark ? 'white' : '#2d2d2d',
             }}
         >
-            <h1 >💕 {props.title}, <a href='/' onClick={e => {
-                e.preventDefault();
-                props.onChangeMode();
-            }}>{user}</a></h1>
+            <h1>
+                💕 {props.title},{' '}
+                <a
+                    href="/"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        props.onChangeMode();
+                    }}
+                    style={{color: isDark ? '#fff': '#2d2d2d'}}
+                >
+                    {user}
+                </a>
+            </h1>
         </header>
     );
 };

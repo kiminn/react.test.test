@@ -1,17 +1,14 @@
-// import { useContext } from 'react';
-import { useState } from 'react';
+import {  useState } from 'react';
 import Article from '../Content_component/Article';
 import Content from '../Content_component/Content';
 import Footer from './Footer';
 import Header from './Header';
 import Create from '../Content_component/Create';
 import Update from '../Content_component/Update';
-// import { ThemeContext } from '../context/ThemeContext';
 
 // { isDark, setIsDark }
 const Page = () => {
-    // const data = useContext(ThemeContext);
-    // console.log('data :', data);
+    // const { isDark } = useContext(ThemeContext);
     const [mode, setMode] = useState('Welcome');
     const [id, setId] = useState(null); // 초기값 없음
     const [nextId, setNextId] = useState(4);
@@ -20,36 +17,46 @@ const Page = () => {
         { id: 2, title: '성산 일출봉', body: '주소: 제주특별자치도 서귀포시 성산읍 성산리 일출로 284-12' },
         { id: 3, title: '오설록 티 뮤지엄', body: '주소: 제주특별자치도 서귀포시 안덕면 신화역사로 15' },
     ]);
+
     let content = null;
-    // 왜 사용할 수 없는지? -> 원래는 읽기전용 모드일때 contextControl이 표시되어야함
-    let contextControl = null;
     if (mode === 'Welcome') {
         content = <Article title="Welcome" body="You can CRUD"></Article>;
     } else if (mode === 'Read') {
         let title,
             body = null;
         for (let i = 0; i < topics.length; i++) {
-            console.log(topics[i].id, id);
-            if (topics[i].id === id) {
+            if (topics[i].id === id) { // id = 현재 선택된 것
                 title = topics[i].title;
                 body = topics[i].body;
             }
         }
-        content = <Article title={title} body={body}></Article>;
-        contextControl = (
-            <li className="update">
+        content = 
+        <>
+        <Article title={title} body={body}></Article>
+        <li className="update">
                 <a
-                    href="/update"
+                    href={'/update/' + id}
                     onClick={(e) => {
                         e.preventDefault();
-                        setMode('Update');
-                    }}
+                        setMode('Update');}}
                 >
                     Update
                 </a>
             </li>
-        );
-        //eslint-disable-line no-unused-vars
+        <li className='delete'>
+            <input className='deleteBtn' type='button' value='Delete' onClick={e => {
+                const newTopics= []; // newTopics라는 빈 배열 생성
+                for(let i=0; i<topics.length; i++){
+                    if(topics[i].id !== id) {
+                        newTopics.push(topics[i]) 
+                        // 선택된 id값과 일치하지않는 id 값만 빈 배열에 push함
+                    }
+                }
+                setTopics(newTopics);
+            }} />
+
+        </li>
+        </>
     } else if (mode === 'Create') {
         content = (
             <Create
@@ -69,18 +76,16 @@ const Page = () => {
         let title,
             body = null;
         for (let i = 0; i < topics.length; i++) {
-            console.log(topics[i].id, id);
             if (topics[i].id === id) {
                 title = topics[i].title;
                 body = topics[i].body;
             }
         }
-        content = (
+        content = 
             <Update
                 title={title}
                 body={body}
                 onUpdate={(title, body) => {
-                    console.log(title, body);
                     const newTopics = [...topics];
                     const updatedTopic = { id: id, title: title, body: body }; // 수정된 토픽
                     for (let i = 0; i < newTopics.length; i++) {
@@ -93,7 +98,8 @@ const Page = () => {
                     setMode('Read');
                 }}
             ></Update>
-        );
+    } else if(mode === 'Delete') {
+        
     }
     return (
         <div className="page">
